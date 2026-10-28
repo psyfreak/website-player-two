@@ -1,0 +1,1 @@
+export default {content:['./src/**/*.{astro,html,js,ts}'],theme:{extend:{colors:{night:'#101827',panel:'#18243a',mint:'#a8f0d3',cyan:'#69c6ed',cream:'#f6f8f5'},fontFamily:{sans:['Arial','sans-serif'],mono:['Courier New','monospace']}}},plugins:[]};

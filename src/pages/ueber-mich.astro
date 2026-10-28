@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import ReferenceGallery from '../components/ReferenceGallery.astro';
+import '../styles/profile-v7.css';
+const branches = [
+ {id:'engineering',name:'ENGINEERING',icon:'</>',description:'Von der ersten Idee bis zum produktiven System. Ich entwickle skalierbare Lösungen, integriere bestehende Systeme und setze moderne Technologien direkt in Anwendungen um.',skills:['Softwarearchitektur','Full-Stack Entwicklung','APIs & Integrationen','Cloud & Infrastruktur','KI-gestützte Entwicklung','Prototyping & MVPs']},
+ {id:'ai',name:'AI & AUTOMATION',icon:'✳',description:'KI und Automatisierung dort einsetzen, wo sie echte Arbeit erleichtern und nachvollziehbaren Nutzen bringen.',skills:['Angewandte KI','Intelligente Systeme','Workflow-Automation','Data Science & BI','Machbarkeitsprüfung','KI-Prototypen']},
+ {id:'product',name:'PRODUCT & STRATEGY',icon:'◎',description:'Technische Entscheidungen mit Geschäftsmodell, Kundennutzen und Produktstrategie verbinden.',skills:['Product Discovery','MVP-Strategie','Technologie-Roadmaps','Priorisierung','Business Sparring','Solution Design']},
+ {id:'leadership',name:'LEADERSHIP',icon:'♧',description:'Teams stärken, Verantwortung übernehmen und Produkte gemeinsam über die Ziellinie bringen.',skills:['CTO-Erfahrung','Teamführung','Stakeholder Management','Technisches Mentoring','End-to-End Ownership','Co-op Delivery']}
+];
+const perks=[
+ {name:'FULL-STACK THINKING',img:'fullstack',desc:'Verbindet Business, Produkt, Architektur und Implementierung.'},
+ {name:'FOUNDER INSTINCT',img:'founder',desc:'Denkt in Kundennutzen, Wirtschaftlichkeit und Umsetzung.'},
+ {name:'AI-AUGMENTED DELIVERY',img:'ai',desc:'Setzt moderne KI-Werkzeuge ein, um schneller bessere Ergebnisse zu liefern.'},
+ {name:'END-TO-END OWNERSHIP',img:'ownership',desc:'Übernimmt Verantwortung vom ersten Gespräch bis zur funktionierenden Lösung.'},
+ {name:'CO-OP SPECIALIST',img:'coop',desc:'Arbeitet mit bestehenden Teams zusammen, statt unnötige Abhängigkeiten aufzubauen.'},
+ {name:'PRAGMATISCH & VERLÄSSLICH',img:'fullstack',desc:'Fokussiert auf umsetzbare Lösungen und langfristigen Mehrwert.'}
+];
+const career=[
+ {date:'2016 – HEUTE',title:'Independent Builder',text:'entrepre.nerds · Softwareentwicklung, Produktaufbau und Technologieberatung.'},
+ {date:'2022 – 2026',title:'Senior Advisor',text:'Innovative Management Partner · Technologiebezogene Beratung.'},
+ {date:'2011 – 2016',title:'Product & CTO Leadership',text:'MASA Group und Hikey Resources · Produktentwicklung, Teamführung und CTO-Verantwortung.'},
+ {date:'2012 – 2015',title:'MBA · Hochschule Kempten',text:'International Business Management & Leadership; Austauschstudium an der University of Cape Town (2014).'},
+ {date:'2005 – 2011',title:'CEO & Co-Founder · Artificial Technology',text:'KI-Middleware für Computerspiele, Produktaufbau und Unternehmensverkauf.'},
+ {date:'2000 – 2006',title:'Diplom Informatik · Hochschule München',text:'Künstliche Intelligenz, Netzwerke, Netzwerkmanagement und IT-Sicherheit.'},
+ {date:'WEITERE XP',title:'Weiterbildung & Nanodegree',text:'Data Science & BI (2018–2019), Blockchain Developer Nanodegree (2021–2022).'}
+];
+const work=[{name:'Workstation',img:'workstation',sub:'Entwicklung'},{name:'3 Bildschirme',img:'displays',sub:'Multitasking'},{name:'Codex',img:'codex',sub:'AI Coding'},{name:'Dev Tools',img:'devtools',sub:'Engineering'},{name:'Cloud Setup',img:'cloud',sub:'Infrastruktur'},{name:'Testgeräte',img:'devices',sub:'Testing'}];
+const play=[{name:'FPV Drohne',img:'drone',sub:'Kreative Projekte'},{name:'Retro Gaming',img:'gaming',sub:'Inspiration'}];
+---
+<Base title="Meet Player Two | Profil, Skill Tree & Erfahrung" description="Lerne den Technologiepartner hinter Player Two kennen: 25+ Jahre Software, KI-Erfahrung, CTO- und Gründerpraxis.">
+ <div class="p7" id="player-profile">
+  <div class="p7-grid">
+   <section class="p7-hero-art" aria-label="Cinematische Pixel-Art-Arbeitsumgebung"><img src="/profile-v7/hero-workstation.webp" alt="Pixel-Art-Illustration eines Entwicklers an mehreren Monitoren in einer futuristischen Stadt" /></section>
+   <section class="p7-panel p7-profile" aria-labelledby="p7-heading">
+    <div class="p7-topline"><span>▸ PLAYER PROFILE</span><span class="p7-online"><i></i> AVAILABLE<br/>FOR CO-OP</span></div>
+    <h1 id="p7-heading">MEET PLAYER TWO</h1><p class="p7-tagline">Technologie. Strategie. Umsetzung.</p>
+    <p>25+ Jahre Erfahrung. Verschiedene Klassen gemeistert.<br/>Bereit für deine nächste Mission.</p>
+    <div class="p7-location"><span>⌖ &nbsp;Landsberg am Lech</span><span>◎ &nbsp;Remote / Vor Ort</span></div>
+    <div class="p7-stats"><div><strong>25+</strong><span>JAHRE XP</span></div><div><strong>4</strong><span>KERN-KLASSEN</span></div><div><strong>20+</strong><span>AI XP</span></div><div><strong>∞</strong><span>NEUE QUESTS</span></div></div>
+   </section>
+   <section class="p7-panel p7-skills" id="skill-tree" aria-labelledby="p7-skill-heading">
+    <header class="p7-heading"><div><small>◈ · SKILL TREE</small><h2 id="p7-skill-heading">KOMPETENZ-ZWEIGE</h2></div><p>Vier eng verbundene Bereiche. Klicke auf einen Zweig.</p></header>
+    <div class="p7-branch-tabs" role="tablist" aria-label="Skill-Zweige">{branches.map((b,i)=><button type="button" role="tab" id={`p7-tab-${b.id}`} aria-controls={`p7-panel-${b.id}`} aria-selected={i===0?'true':'false'} tabindex={i===0?0:-1} data-p7-skill={b.id}><span aria-hidden="true">{b.icon}</span><strong>{b.name}</strong></button>)}</div>
+    {branches.map((b,i)=><div class="p7-skill-content" id={`p7-panel-${b.id}`} role="tabpanel" aria-labelledby={`p7-tab-${b.id}`} hidden={i!==0}>
+     <div class="p7-skill-illustration"><img src="/profile-v7/engineering.webp" alt="Cineastische Pixel-Art-Szene eines Entwicklers an einem Arbeitsplatz" loading="lazy"/><strong>{b.name}</strong></div>
+     <div class="p7-skill-info"><h3>{b.name}</h3><p>{b.description}</p><div class="p7-nodes">{b.skills.map((s,j)=><div><span aria-hidden="true">{['◇','⌘','✧','▣','✳','◈'][j]}</span>{s}</div>)}</div></div>
+    </div>)}
+   </section>
+   <section class="p7-panel p7-perks" aria-labelledby="p7-perks-heading"><header class="p7-heading"><div><small>◈ · EQUIPPED PERKS</small><h2 id="p7-perks-heading">WAS MICH BESONDERS MACHT</h2></div><p>Die Vorteile, die ich in deine Mission einbringe.</p></header>
+    <div class="p7-perk-grid">{perks.map(perk=><article class="p7-perk"><img src={`/profile-v7/perk-${perk.img}.webp`} alt="" loading="lazy"/><div><h3>{perk.name}</h3><p>{perk.desc}</p></div></article>)}</div>
+   </section>
+   <section class="p7-panel p7-career" aria-labelledby="p7-career-heading"><header class="p7-heading"><div><small>◈ · CHARACTER PROGRESSION</small><h2 id="p7-career-heading">BERUFLICHE STATIONEN</h2></div><p>Einige der wichtigsten Level auf meiner Reise.</p></header>
+    <ol class="p7-timeline">{career.map((item,i)=><li><time>{item.date}</time><span class="p7-timeline-dot" aria-hidden="true"></span><div><strong>{item.title}</strong><p>{item.text}</p></div></li>)}</ol>
+   </section>
+   <section class="p7-panel p7-inventory" aria-labelledby="p7-inventory-heading"><header class="p7-heading"><div><small>◈ · INVENTORY</small><h2 id="p7-inventory-heading">MEIN EQUIPMENT</h2></div><p>Tools, Hardware und Spielzeuge für aktuelle und zukünftige Missionen.</p></header>
+    <div class="p7-inventory-tabs" role="tablist" aria-label="Equipment-Kategorien"><button type="button" role="tab" aria-selected="true" id="p7-inv-work-tab" aria-controls="p7-inv-work" data-p7-inv="work">▣ &nbsp; PROFESSIONAL LOADOUT</button><button type="button" role="tab" aria-selected="false" id="p7-inv-play-tab" aria-controls="p7-inv-play" tabindex="-1" data-p7-inv="play">♧ &nbsp; SIDE QUESTS & GADGETS</button></div>
+    <div id="p7-inv-work" role="tabpanel" aria-labelledby="p7-inv-work-tab" class="p7-item-grid">{work.map(item=><article class="p7-item"><img src={`/profile-v7/${item.img}.webp`} alt="" loading="lazy"/><strong>{item.name}</strong><span>{item.sub}</span></article>)}</div>
+    <div id="p7-inv-play" role="tabpanel" aria-labelledby="p7-inv-play-tab" class="p7-item-grid" hidden>{play.map(item=><article class="p7-item"><img src={`/profile-v7/${item.img}.webp`} alt="" loading="lazy"/><strong>{item.name}</strong><span>{item.sub}</span></article>)}</div>
+   </section>
+   <section class="p7-cta" aria-labelledby="p7-cta-heading"><div><small>CO-OP MODE / PLAYER TWO</small><h2 id="p7-cta-heading">BEREIT FÜR<br/>DIE NÄCHSTE QUEST?</h2><p>Dein Projekt braucht einen zweiten Spieler?<br/>Ich freue mich auf deine Nachricht.</p><div class="p7-cta-buttons"><a href="/kontakt">KONTAKT AUFNEHMEN →</a><a href="/#quests">ZUR QUEST-ÜBERSICHT</a></div></div></section>
+  </div>
+ </div>
+ <div class="wrap" id="referenzen"><ReferenceGallery /></div>
+</Base>
+<script>
+ function tabs(selector:string, panelPrefix:string){const buttons=Array.from(document.querySelectorAll<HTMLButtonElement>(selector));const activate=(button:HTMLButtonElement)=>{buttons.forEach(b=>{const yes=b===button;b.setAttribute('aria-selected',String(yes));b.tabIndex=yes?0:-1;});document.querySelectorAll<HTMLElement>(`[id^="${panelPrefix}"]`).forEach(p=>{if(p.getAttribute('role')==='tabpanel')p.hidden=p.id!==button.getAttribute('aria-controls');});};buttons.forEach((button,i)=>{button.addEventListener('click',()=>activate(button));button.addEventListener('keydown',e=>{if(!['ArrowRight','ArrowLeft','Home','End'].includes(e.key))return;e.preventDefault();const j=e.key==='Home'?0:e.key==='End'?buttons.length-1:(i+(e.key==='ArrowRight'?1:-1)+buttons.length)%buttons.length;activate(buttons[j]);buttons[j].focus();});});}
+ tabs('[data-p7-skill]','p7-panel-');tabs('[data-p7-inv]','p7-inv-');
+</script>

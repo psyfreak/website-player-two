@@ -1,0 +1,6 @@
+---
+import Base from '../../layouts/Base.astro';import {quests} from '../../data';
+export function getStaticPaths(){return quests.map(q=>({params:{slug:q.slug},props:{quest:q}}));}
+const {quest}=Astro.props;
+---
+<Base title={`${quest.de} | Player Two`} description={quest.description}><section class="hero"><div class="wrap"><p class="eyebrow mb-4">{quest.group} · QUEST SELECTED</p><h1 class="max-w-4xl">{quest.de}</h1><p class="text-xl muted mt-6 max-w-2xl">{quest.problem}</p><p class="muted mt-4 max-w-2xl">{quest.description}</p><div class="flex flex-wrap gap-3 mt-8"><a class="btn" href={`/kontakt?quest=${quest.slug}`}>Diese Quest besprechen ↗</a><a class="btn alt" href="/#quests">Alle Quests</a></div></div></section><section class="section"><div class="wrap max-w-4xl"><p class="eyebrow mb-3">Unser Spielplan</p><h2>Vom Problem zur Lösung</h2><div class="grid2 mt-8">{['Ziele und Anforderungen klären','Lösungsweg und Prioritäten festlegen','Umsetzen und gemeinsam prüfen','Einführen und sinnvoll weiterentwickeln'].map((s,i)=><div class="card"><span class="tag">STEP 0{i+1}</span><h3 class="font-bold text-xl mt-2">{s}</h3></div>)}</div><p class="muted mt-7">Der konkrete Umfang wird gemeinsam festgelegt. Nicht jedes Projekt braucht alle Phasen.</p></div></section></Base>

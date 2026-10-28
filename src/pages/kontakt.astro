@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import { quests } from '../data';
+---
+<Base title="Kontakt & Projekt besprechen | Player Two" description="Kontaktieren Sie Player Two für Software, Automatisierung, KI und Tech Leadership. E-Mail, Telefon und Projektanfrage.">
+<section class="section contact-section"><div class="wrap"><p class="eyebrow">START CO-OP / KONTAKT</p><h1 class="contact-title">LASS UNS DEINE <span class="text-mint">MISSION</span> BESPRECHEN.</h1><p class="contact-intro">Eine Idee, ein Problem oder ein Projekt, das Unterstützung braucht? Schreib mir direkt oder schildere deine Herausforderung über das Formular.</p>
+<div class="contact-layout"><aside class="contact-aside">
+<div class="contact-panel"><p class="eyebrow">DIRECT CONNECTION</p><h2>Direkter Draht.</h2><p class="muted">Du erreichst mich ohne Umwege.</p><a class="contact-method" href="mailto:contact@player-two.de"><span aria-hidden="true">✉</span><span><small>E-MAIL</small><strong>contact@player-two.de</strong></span><span aria-hidden="true">↗</span></a><a class="contact-method" href="tel:+4917622348224"><span aria-hidden="true">☎</span><span><small>MOBIL</small><strong>+49 176 22 34 82 24</strong></span><span aria-hidden="true">↗</span></a></div>
+<div class="contact-panel booking-panel"><p class="eyebrow">BOOK A SESSION</p><h2>Lieber direkt sprechen?</h2><p class="muted">Ein unverbindliches Kennenlerngespräch lässt sich künftig hier über Google Kalender buchen.</p><span class="booking-unavailable" aria-disabled="true">Terminbuchung folgt <span aria-hidden="true">◷</span></span><p class="contact-note">Der Google-Calendar-Buchungslink wird ergänzt, sobald er verfügbar ist.</p></div>
+</aside><div class="contact-panel form-panel"><p class="eyebrow">SEND YOUR QUEST</p><h2>Erzähl mir von deinem Projekt.</h2><form id="contact-form" action="/api/contact.php" method="post" accept-charset="UTF-8">
+<div class="form-row"><div class="field"><label for="contact-name">Name <span aria-hidden="true">*</span></label><input id="contact-name" name="name" autocomplete="name" required maxlength="240" placeholder="Dein Name"/></div><div class="field"><label for="contact-email">E-Mail <span aria-hidden="true">*</span></label><input id="contact-email" name="email" type="email" autocomplete="email" required maxlength="200" placeholder="name@unternehmen.de"/></div></div>
+<div class="field"><label for="contact-company">Unternehmen <span class="optional">(optional)</span></label><input id="contact-company" name="company" autocomplete="organization" maxlength="200" placeholder="Dein Unternehmen"/></div>
+<div class="field"><label for="contact-topic">Deine Mission <span class="optional">(optional)</span></label><select id="contact-topic" name="topic"><option value="">Noch nicht sicher / Allgemeine Anfrage</option><optgroup label="CREATE"><option value="create">Etwas Neues schaffen</option></optgroup><optgroup label="IMPROVE"><option value="improve">Besser arbeiten</option></optgroup><optgroup label="EMPOWER"><option value="empower">Team verstärken</option></optgroup><optgroup label="EVOLVE"><option value="evolve">Zukunft gestalten</option></optgroup><optgroup label="Spezifische Quests">{quests.map(q => <option value={q.slug}>{q.de}</option>)}</optgroup></select></div>
+<div class="field"><label for="contact-message">Worum geht es? <span aria-hidden="true">*</span></label><textarea id="contact-message" name="message" rows="6" required maxlength="10000" placeholder="Was möchtest du erreichen? Was funktioniert noch nicht?" ></textarea></div>
+<div class="honeypot" aria-hidden="true"><label for="contact-website">Website</label><input id="contact-website" name="website" tabindex="-1" autocomplete="off"/></div>
+<label class="privacy-row"><input type="checkbox" name="privacy" value="1" required/><span>Ich habe die <a href="/datenschutz" target="_blank" rel="noopener">Datenschutzhinweise</a> gelesen und bin mit der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage einverstanden. <span aria-hidden="true">*</span></span></label>
+<div class="form-bottom"><button type="submit" class="btn" id="contact-submit">Nachricht senden ↗</button><p id="contact-feedback" class="form-feedback" role="status" aria-live="polite"></p></div><p class="contact-note">Pflichtfelder sind mit * gekennzeichnet. Bitte keine Passwörter oder vertraulichen Zugangsdaten senden.</p>
+</form></div></div></div></section>
+<script>
+const form = document.querySelector<HTMLFormElement>('#contact-form');
+const feedback = document.querySelector<HTMLElement>('#contact-feedback');
+const submit = document.querySelector<HTMLButtonElement>('#contact-submit');
+if (form && feedback && submit) {
+  const params = new URLSearchParams(window.location.search);
+  const quest = params.get('quest');
+  const topic = form.elements.namedItem('topic') as HTMLSelectElement | null;
+  if (quest && topic && [...topic.options].some(option => option.value === quest)) topic.value = quest;
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    submit.disabled = true;
+    submit.textContent = 'Wird gesendet …';
+    feedback.textContent = '';
+    feedback.dataset.state = '';
+    try {
+      const response = await fetch(form.action, {method:'POST', body:new FormData(form), headers:{'Accept':'application/json'}});
+      const data = await response.json() as {message?: string};
+      if (!response.ok) throw new Error(data.message || 'Die Nachricht konnte nicht gesendet werden.');
+      feedback.textContent = data.message || 'Vielen Dank! Deine Nachricht wurde versendet.';
+      feedback.dataset.state = 'success';
+      form.reset();
+    } catch (error) {
+      feedback.textContent = error instanceof Error ? error.message : 'Senden fehlgeschlagen. Bitte versuche es später erneut oder schreib eine E-Mail.';
+      feedback.dataset.state = 'error';
+    } finally {
+      submit.disabled = false;
+      submit.textContent = 'Nachricht senden ↗';
+    }
+  });
+}
+</script>
+</Base>

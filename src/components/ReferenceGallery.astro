@@ -1,0 +1,44 @@
+---
+import { references } from '../data/references';
+interface Props { compact?: boolean; }
+const { compact = false } = Astro.props;
+const logos = compact ? references.filter((item) => item.featured) : references;
+---
+<section class:list={['p2-references', { 'p2-references--compact': compact }]} aria-labelledby={compact ? 'p2-references-home' : 'p2-references-about'}>
+  <div class="p2-references__header">
+    <div>
+      <p class="p2-references__eyebrow">// {compact ? 'CO-OP HISTORY' : 'ALLIES DATABASE'}</p>
+      <h2 id={compact ? 'p2-references-home' : 'p2-references-about'}>{compact ? 'PREVIOUSLY PLAYED WITH' : 'ALLIES & COLLABORATIONS'}</h2>
+      <p class="p2-references__intro">Ausgewählte Referenzen aus meiner bisherigen unternehmerischen Tätigkeit und Projektarbeit – insbesondere mit entrepre.nerds.</p>
+    </div>
+    <span class="p2-references__counter" aria-label={`${logos.length} Referenzlogos`}>{String(logos.length).padStart(2,'0')} / LOGS</span>
+  </div>
+  <div class="p2-references__grid">
+    {logos.map((logo) => <div class="p2-references__tile" title={logo.name}>
+      <img src={logo.src} alt={`Logo ${logo.name}`} loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+    </div>)}
+  </div>
+  {compact && <p class="p2-references__more">Weitere Referenzen im <a href="/ueber-mich/#referenzen">Character Profile <span aria-hidden="true">↗</span></a></p>}
+  <p class="p2-references__note">Die Logos stehen für Referenzen aus früheren Tätigkeiten und Projekten. Sie sind keine Aussage über aktuelle Player-Two-Kundenbeziehungen oder eine Empfehlung durch die genannten Unternehmen.</p>
+</section>
+<style>
+  .p2-references {--ref-cyan:#42e5db;--ref-navy:#071622;position:relative;isolation:isolate;margin:clamp(2rem,5vw,5rem) auto;padding:clamp(1.2rem,3vw,2.2rem);background:linear-gradient(155deg,#0d2534,#071622 75%);border:1px solid #225061;box-shadow:0 12px 50px #0005;color:#e8f7fa;max-width:1200px;clip-path:polygon(0 0,calc(100% - 15px) 0,100% 15px,100% 100%,15px 100%,0 calc(100% - 15px))}
+  .p2-references::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,var(--ref-cyan),transparent 70%)}
+  .p2-references__header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.4rem}
+  .p2-references__eyebrow{color:var(--ref-cyan);font-size:.73rem;letter-spacing:.18em;font-weight:700;margin:0 0 .55rem}
+  .p2-references h2{font-size:clamp(1.3rem,2.5vw,2.1rem);line-height:1.2;letter-spacing:.04em;margin:0 0 .65rem;color:#f5fdff}
+  .p2-references__intro{max-width:690px;color:#a6c0cc;font-size:.93rem;line-height:1.6;margin:0}
+  .p2-references__counter{flex:none;font-size:.75rem;color:var(--ref-cyan);border:1px solid #2c6770;padding:.45rem .6rem;letter-spacing:.1em}
+  .p2-references__grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+  .p2-references--compact .p2-references__grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .p2-references__tile{min-height:100px;padding:1rem;background:#eaf1f2;border:1px solid #527783;display:flex;align-items:center;justify-content:center;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;overflow:hidden}
+  .p2-references__tile:hover{transform:translateY(-3px);border-color:var(--ref-cyan);box-shadow:0 0 0 1px #42e5db77,0 8px 22px #42e5db18}
+  .p2-references__tile img{display:block;width:100%;height:68px;object-fit:contain;max-width:180px;color:#14222a;font-size:.7rem}
+  .p2-references__more{text-align:right;margin:1rem 0 0;font-size:.85rem;color:#abc4cf}
+  .p2-references__more a{color:var(--ref-cyan);text-decoration:none;font-weight:700}
+  .p2-references__more a:hover{text-decoration:underline}
+  .p2-references__note{margin:1.25rem 0 0;color:#819ca9;font-size:.73rem;line-height:1.55}
+  @media(max-width:850px){.p2-references__grid{grid-template-columns:repeat(3,minmax(0,1fr))}.p2-references--compact .p2-references__grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  @media(max-width:550px){.p2-references__grid,.p2-references--compact .p2-references__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.p2-references__tile{min-height:88px;padding:.7rem}.p2-references__tile img{height:56px}.p2-references__counter{display:none}}
+  @media(prefers-reduced-motion:reduce){.p2-references__tile{transition:none}.p2-references__tile:hover{transform:none}}
+</style>

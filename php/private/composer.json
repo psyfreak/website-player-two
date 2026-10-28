@@ -1,0 +1,17 @@
+{
+  "name": "player-two website",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "frank",
+      "email": "contact@player-two.de"
+    }
+  ],
+  "require": {
+    "php": ">=7.3",
+    "phpmailer/phpmailer": "^7.0",
+    "ext-json": "*"
+  }
+}

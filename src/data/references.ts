@@ -1,0 +1,5 @@
+/** Original reference logos stored locally in public/clients/. */
+const base = '/clients/';
+export const references = [
+  ['ABAKUS','abakus-logo.png'],['adidas','adidas-logo.png'],['Der Pertl','der-pertl.png'],['elastic items','elasticItems-logo.png'],['FASTTRACK','fasttrack-logo.png'],['Food Packaging Forum','FPF-logo.png'],['hellowins','hellowins.png'],['IMP','imp-logo.png'],['iwis','iwis-logo.jpg'],['juntidos','juntidos-logo.png'],['KEMAPACK','kemapack-logo.png'],['Kortenbruck','Kortenbruck.png'],['Laura Angillieri','LAURA-ANGILLIERI-LOGO.png'],['Enkendorfer Hausbräu','logo-enkendoerfler-hausbraeu.png'],['KEBA','logo-keba.jpg'],['LINEARTEC','logo-lineartec.png'],['Merdardus Wallner','logo-merdardus-wallner.png'],['Sivantos','logo-sivantos.jpg'],['Stadtwerke Landsberg','stadtwerke-landsberg-logo.svg'],['str8labs','logo-str8labs.png'],['Wildpfade','logo-wildpfade.png'],['Nennmann','nennmann-logo.png'],['NBT','nbt.jpg'],['VITA','vita-logo.png'],['weeve','weeve-logo.png'],['ZKW Group','ZKW-Group.png']
+].map(([name, file], index) => ({name, src: base + file, featured: [0,1,5,8,10,14,18,25].includes(index)}));
