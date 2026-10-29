@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import ReferenceGallery from '../components/ReferenceGallery.astro';
 import '../styles/profile.css';
 const branches = [
- {id:'engineering',name:'ENGINEERING',icon:'</>',description:'Von der ersten Idee bis zum produktiven System. Ich entwickle skalierbare Lösungen, integriere bestehende Systeme und setze moderne Technologien direkt in Anwendungen um.',skills:['Softwarearchitektur','Full-Stack Entwicklung','APIs & Integrationen','Cloud & Infrastruktur','KI-gestützte Entwicklung','Prototyping & MVPs']},
+ {id:'engineering',name:'(AGENTIC-)ENGINEERING',icon:'</>',description:'Von der ersten Idee bis zum produktiven System. Ich entwickle skalierbare Lösungen, integriere bestehende Systeme und setze moderne Technologien direkt in Anwendungen um.',skills:['Softwarearchitektur','Full-Stack Entwicklung','APIs & Integrationen','Cloud & Infrastruktur','KI-gestützte Entwicklung','Prototyping & MVPs']},
  {id:'ai',name:'AI & AUTOMATION',icon:'✳',description:'KI und Automatisierung dort einsetzen, wo sie echte Arbeit erleichtern und nachvollziehbaren Nutzen bringen.',skills:['Angewandte KI','Intelligente Systeme','Workflow-Automation','Data Science & BI','Machbarkeitsprüfung','KI-Prototypen']},
  {id:'product',name:'PRODUCT & STRATEGY',icon:'◎',description:'Technische Entscheidungen mit Geschäftsmodell, Kundennutzen und Produktstrategie verbinden.',skills:['Product Discovery','MVP-Strategie','Technologie-Roadmaps','Priorisierung','Business Sparring','Solution Design']},
  {id:'leadership',name:'LEADERSHIP',icon:'♧',description:'Teams stärken, Verantwortung übernehmen und Produkte gemeinsam über die Ziellinie bringen.',skills:['CTO-Erfahrung','Teamführung','Stakeholder Management','Technisches Mentoring','End-to-End Ownership','Co-op Delivery']}
@@ -19,19 +19,19 @@ const perks=[
 const career=[
  {date:'2016 – HEUTE',title:'Independent Builder',text:'entrepre.nerds · Softwareentwicklung, Produktaufbau und Technologieberatung.'},
  {date:'2022 – 2026',title:'Senior Advisor',text:'Innovative Management Partner · Technologiebezogene Beratung.'},
- {date:'2011 – 2016',title:'Product & CTO Leadership',text:'MASA Group und Hikey Resources · Produktentwicklung, Teamführung und CTO-Verantwortung.'},
+ {date:'2011 – 2016',title:'Product & CTO Leadership',text:'MASA Group (Paris) und Hikey Resources (Sydney) · Produktentwicklung, Teamführung und CTO-Verantwortung.'},
  {date:'2012 – 2015',title:'MBA · Hochschule Kempten',text:'International Business Management & Leadership; Austauschstudium an der University of Cape Town (2014).'},
  {date:'2005 – 2011',title:'CEO & Co-Founder · Artificial Technology',text:'KI-Middleware für Computerspiele, Produktaufbau und Unternehmensverkauf.'},
  {date:'2000 – 2006',title:'Diplom Informatik · Hochschule München',text:'Künstliche Intelligenz, Netzwerke, Netzwerkmanagement und IT-Sicherheit.'},
  {date:'WEITERE XP',title:'Weiterbildung & Nanodegree',text:'Data Science & BI (2018–2019), Blockchain Developer Nanodegree (2021–2022).'}
 ];
-const work=[{name:'Workstation',img:'workstation',sub:'Entwicklung'},{name:'3 Bildschirme',img:'displays',sub:'Multitasking'},{name:'Codex',img:'codex',sub:'AI Coding'},{name:'Dev Tools',img:'devtools',sub:'Engineering'},{name:'Cloud Setup',img:'cloud',sub:'Infrastruktur'},{name:'Testgeräte',img:'devices',sub:'Testing'}];
-const play=[{name:'FPV Drohne',img:'drone',sub:'Kreative Projekte'},{name:'Retro Gaming',img:'gaming',sub:'Inspiration'}];
+const work=[{name:'Workstation',img:'workstation',sub:'Entwicklung'},{name:'3 Bildschirme',img:'displays',sub:'Multitasking'},{name:'Agenten',img:'codex',sub:'AI Coding (Claude/Codex)'},{name:'Dev Tools',img:'devtools',sub:'Engineering'},{name:'Cloud Setup',img:'cloud',sub:'Infrastruktur'},{name:'Testgeräte',img:'devices',sub:'Testing'}];
+const play=[{name:'FPV Drohne',img:'drone',sub:'Kreative Projekte'},{name:'Retro Gaming',img:'gaming',sub:'Inspiration'},{name:'Arduino',img:'arduino',sub:'Elektronik'},{name:'Fußball',img:'football',sub:'Sports'}];
 ---
 <Base title="Meet Player Two | Profil, Skill Tree & Erfahrung" description="Lerne den Technologiepartner hinter Player Two kennen: 25+ Jahre Software, KI-Erfahrung, CTO- und Gründerpraxis.">
  <div class="p7" id="player-profile">
   <div class="p7-grid">
-   <section class="p7-hero-art" aria-label="Cinematische Pixel-Art-Arbeitsumgebung"><img src="/profile-v7/hero-workstation.webp" alt="Pixel-Art-Illustration eines Entwicklers an mehreren Monitoren in einer futuristischen Stadt" /></section>
+   <section class="p7-hero-art" aria-label="Cinematische Pixel-Art-Arbeitsumgebung"><img src="/profile/hero-workstation.webp" alt="Pixel-Art-Illustration eines Entwicklers an mehreren Monitoren in einer futuristischen Stadt" /></section>
    <section class="p7-panel p7-profile" aria-labelledby="p7-heading">
     <div class="p7-topline"><span>▸ PLAYER PROFILE</span><span class="p7-online"><i></i> AVAILABLE<br/>FOR CO-OP</span></div>
     <h1 id="p7-heading">MEET PLAYER TWO</h1><p class="p7-tagline">Technologie. Strategie. Umsetzung.</p>
@@ -43,20 +43,58 @@ const play=[{name:'FPV Drohne',img:'drone',sub:'Kreative Projekte'},{name:'Retro
     <header class="p7-heading"><div><small>◈ · SKILL TREE</small><h2 id="p7-skill-heading">KOMPETENZ-ZWEIGE</h2></div><p>Vier eng verbundene Bereiche. Klicke auf einen Zweig.</p></header>
     <div class="p7-branch-tabs" role="tablist" aria-label="Skill-Zweige">{branches.map((b,i)=><button type="button" role="tab" id={`p7-tab-${b.id}`} aria-controls={`p7-panel-${b.id}`} aria-selected={i===0?'true':'false'} tabindex={i===0?0:-1} data-p7-skill={b.id}><span aria-hidden="true">{b.icon}</span><strong>{b.name}</strong></button>)}</div>
     {branches.map((b,i)=><div class="p7-skill-content" id={`p7-panel-${b.id}`} role="tabpanel" aria-labelledby={`p7-tab-${b.id}`} hidden={i!==0}>
-     <div class="p7-skill-illustration"><img src="/profile-v7/engineering.webp" alt="Cineastische Pixel-Art-Szene eines Entwicklers an einem Arbeitsplatz" loading="lazy"/><strong>{b.name}</strong></div>
+     <div class="p7-skill-illustration"><img src="/profile/engineering.webp" alt="Cineastische Pixel-Art-Szene eines Entwicklers an einem Arbeitsplatz" loading="lazy"/><strong>{b.name}</strong></div>
      <div class="p7-skill-info"><h3>{b.name}</h3><p>{b.description}</p><div class="p7-nodes">{b.skills.map((s,j)=><div><span aria-hidden="true">{['◇','⌘','✧','▣','✳','◈'][j]}</span>{s}</div>)}</div></div>
     </div>)}
    </section>
    <section class="p7-panel p7-perks" aria-labelledby="p7-perks-heading"><header class="p7-heading"><div><small>◈ · EQUIPPED PERKS</small><h2 id="p7-perks-heading">WAS MICH BESONDERS MACHT</h2></div><p>Die Vorteile, die ich in deine Mission einbringe.</p></header>
-    <div class="p7-perk-grid">{perks.map(perk=><article class="p7-perk"><img src={`/profile-v7/perk-${perk.img}.webp`} alt="" loading="lazy"/><div><h3>{perk.name}</h3><p>{perk.desc}</p></div></article>)}</div>
+    <div class="p7-perk-grid">{perks.map(perk=><article class="p7-perk"><img src={`/profile/perk-${perk.img}.webp`} alt="" loading="lazy"/><div><h3>{perk.name}</h3><p>{perk.desc}</p></div></article>)}</div>
    </section>
    <section class="p7-panel p7-career" aria-labelledby="p7-career-heading"><header class="p7-heading"><div><small>◈ · CHARACTER PROGRESSION</small><h2 id="p7-career-heading">BERUFLICHE STATIONEN</h2></div><p>Einige der wichtigsten Level auf meiner Reise.</p></header>
     <ol class="p7-timeline">{career.map((item,i)=><li><time>{item.date}</time><span class="p7-timeline-dot" aria-hidden="true"></span><div><strong>{item.title}</strong><p>{item.text}</p></div></li>)}</ol>
    </section>
    <section class="p7-panel p7-inventory" aria-labelledby="p7-inventory-heading"><header class="p7-heading"><div><small>◈ · INVENTORY</small><h2 id="p7-inventory-heading">MEIN EQUIPMENT</h2></div><p>Tools, Hardware und Spielzeuge für aktuelle und zukünftige Missionen.</p></header>
     <div class="p7-inventory-tabs" role="tablist" aria-label="Equipment-Kategorien"><button type="button" role="tab" aria-selected="true" id="p7-inv-work-tab" aria-controls="p7-inv-work" data-p7-inv="work">▣ &nbsp; PROFESSIONAL LOADOUT</button><button type="button" role="tab" aria-selected="false" id="p7-inv-play-tab" aria-controls="p7-inv-play" tabindex="-1" data-p7-inv="play">♧ &nbsp; SIDE QUESTS & GADGETS</button></div>
-    <div id="p7-inv-work" role="tabpanel" aria-labelledby="p7-inv-work-tab" class="p7-item-grid">{work.map(item=><article class="p7-item"><img src={`/profile-v7/${item.img}.webp`} alt="" loading="lazy"/><strong>{item.name}</strong><span>{item.sub}</span></article>)}</div>
-    <div id="p7-inv-play" role="tabpanel" aria-labelledby="p7-inv-play-tab" class="p7-item-grid" hidden>{play.map(item=><article class="p7-item"><img src={`/profile-v7/${item.img}.webp`} alt="" loading="lazy"/><strong>{item.name}</strong><span>{item.sub}</span></article>)}</div>
+    <div id="p7-inv-work" role="tabpanel" aria-labelledby="p7-inv-work-tab" class="p7-item-grid">{work.map(item=><article class="p7-item"><img src={`/profile/${item.img}.${['agents','arduino','football'].includes(item.img)?'svg':'webp'}`} alt="" loading="lazy"/><strong>{item.name}</strong><span>{item.sub}</span></article>)}</div>
+    <div id="p7-inv-play" role="tabpanel" aria-labelledby="p7-inv-play-tab" class="p7-item-grid" hidden>{play.map(item=><article class="p7-item"><img src={`/profile/${item.img}.${['agents','arduino','football'].includes(item.img)?'svg':'webp'}`} alt="" loading="lazy"/><strong>{item.name}</strong><span>{item.sub}</span></article>)}</div>
+   </section>
+   <section class="p7-panel p7-world" id="world-map" aria-labelledby="p7-world-heading">
+    <header class="p7-heading"><div><small>◈ · WORLD MAP / EXPLORATION LOG</small><h2 id="p7-world-heading">EXPLORED REGIONS</h2></div><p>Stationen meiner beruflichen Reise – von Bayern bis Australien.</p></header>
+    <div class="p7-world-layout">
+     <div class="p7-map-canvas" role="img" aria-label="Stilisierte Weltkarte mit beruflichen Stationen: München, Landsberg am Lech, Kapstadt, Sydney, San Francisco und Paris">
+      <svg viewBox="0 0 960 440" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+       <defs><pattern id="p7-map-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#16465a" stroke-width=".8"/></pattern><filter id="p7-map-glow"><feGaussianBlur stdDeviation="3"/></filter></defs>
+       <rect width="960" height="440" fill="#031522"/><rect width="960" height="440" fill="url(#p7-map-grid)" opacity=".65"/>
+       <g fill="#103447" stroke="#23657a" stroke-width="1.5" opacity=".93">
+        <path d="M70 90L105 57 178 40 218 68 246 65 271 101 250 138 222 147 214 180 191 200 176 244 155 215 145 171 111 150 87 125Z"/>
+        <path d="M203 235L240 228 266 254 274 299 253 342 230 387 210 366 197 319 184 282Z"/>
+        <path d="M405 95L433 77 461 89 477 116 462 145 448 162 465 192 492 210 497 259 474 305 444 334 425 302 412 257 398 221 405 184 392 146Z"/>
+        <path d="M464 90L495 62 558 49 615 57 651 42 717 58 780 94 832 105 846 145 806 165 776 151 742 181 701 172 672 204 643 192 616 167 585 170 556 145 531 167 496 151Z"/>
+        <path d="M731 273L773 259 816 279 831 310 804 336 756 334 721 309Z"/>
+        <path d="M847 344L855 359 850 372 844 360Z"/>
+        <path d="M337 47L356 32 374 49 366 75 348 81Z"/>
+       </g>
+       <g fill="none" stroke="#24d9e2" stroke-width="1.7" stroke-dasharray="5 8" opacity=".7"><path d="M170 139 Q330 24 452 120 Q490 180 466 318"/><path d="M452 120 Q610 45 775 295"/><path d="M170 139 Q310 175 452 120"/></g>
+       <g font-family="Arial,sans-serif" font-weight="bold" font-size="13">
+        <g><circle cx="170" cy="139" r="10" fill="#28e8e5" opacity=".22"/><circle cx="170" cy="139" r="4" fill="#40f5ee"/><text x="158" y="121" text-anchor="end" fill="#b6fbf6">SAN FRANCISCO</text></g>
+        <g><circle cx="443" cy="113" r="10" fill="#28e8e5" opacity=".22"/><circle cx="443" cy="113" r="4" fill="#40f5ee"/><text x="433" y="96" text-anchor="end" fill="#b6fbf6">PARIS</text></g>
+        <g><circle cx="459" cy="128" r="10" fill="#ff9b38" opacity=".2"/><circle cx="459" cy="128" r="4" fill="#ffae55"/><text x="482" y="123" fill="#ffd4a0">MÜNCHEN</text></g>
+        <g><circle cx="451" cy="137" r="10" fill="#ff9b38" opacity=".2"/><circle cx="451" cy="137" r="4" fill="#ffae55"/><text x="483" y="145" fill="#ffd4a0">LANDSBERG</text></g>
+        <g><circle cx="466" cy="318" r="10" fill="#28e8e5" opacity=".22"/><circle cx="466" cy="318" r="4" fill="#40f5ee"/><text x="483" y="324" fill="#b6fbf6">KAPSTADT</text></g>
+        <g><circle cx="792" cy="307" r="10" fill="#28e8e5" opacity=".22"/><circle cx="792" cy="307" r="4" fill="#40f5ee"/><text x="805" y="297" fill="#b6fbf6">SYDNEY</text></g>
+       </g>
+       <text x="20" y="421" font-size="11" font-family="monospace" fill="#608e9e">EXPLORATION MAP · SCHEMATIC / NOT TO SCALE</text>
+      </svg>
+     </div>
+     <div class="p7-world-legend"><strong>DISCOVERED LOCATIONS <span>06 / 06</span></strong><ul>
+      <li><span>⌖</span><div><b>München</b><small>Studium & technologische Basis</small></div></li>
+      <li><span>⌖</span><div><b>Landsberg am Lech</b><small>Unternehmertum & heutige Basis</small></div></li>
+      <li><span>⌖</span><div><b>Kapstadt</b><small>MBA-Auslandssemester · 2014</small></div></li>
+      <li><span>⌖</span><div><b>Sydney</b><small>Hikey Resources · CTO</small></div></li>
+      <li><span>⌖</span><div><b>Paris</b><small>MASA Group · Product & Studio</small></div></li>
+      <li><span>⌖</span><div><b>San Francisco</b><small>Internationale Station</small></div></li>
+     </ul></div>
+    </div>
    </section>
    <section class="p7-cta" aria-labelledby="p7-cta-heading"><div><small>CO-OP MODE / PLAYER TWO</small><h2 id="p7-cta-heading">BEREIT FÜR<br/>DIE NÄCHSTE QUEST?</h2><p>Dein Projekt braucht einen zweiten Spieler?<br/>Ich freue mich auf deine Nachricht.</p><div class="p7-cta-buttons"><a href="/kontakt">KONTAKT AUFNEHMEN →</a><a href="/#quests">ZUR QUEST-ÜBERSICHT</a></div></div></section>
   </div>
