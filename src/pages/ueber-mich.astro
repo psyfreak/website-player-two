@@ -25,8 +25,8 @@ const career=[
  {date:'2000 – 2006',title:'Diplom Informatik · Hochschule München',text:'Künstliche Intelligenz, Netzwerke, Netzwerkmanagement und IT-Sicherheit.'},
  {date:'WEITERE XP',title:'Weiterbildung & Nanodegree',text:'Data Science & BI (2018–2019), Blockchain Developer Nanodegree (2021–2022).'}
 ];
-const work=[{name:'Workstation',img:'workstation',sub:'Entwicklung'},{name:'3 Bildschirme',img:'displays',sub:'Multitasking'},{name:'Agenten',img:'codex',sub:'AI Coding (Claude/Codex)'},{name:'Dev Tools',img:'devtools',sub:'Engineering'},{name:'Cloud Setup',img:'cloud',sub:'Infrastruktur'},{name:'Testgeräte',img:'devices',sub:'Testing'}];
-const play=[{name:'FPV Drohne',img:'drone',sub:'Kreative Projekte'},{name:'Retro Gaming',img:'gaming',sub:'Inspiration'},{name:'Arduino',img:'arduino',sub:'Elektronik'},{name:'Fußball',img:'football',sub:'Sports'}];
+const work=[{name:'Workstation',img:'workstation',sub:'Entwicklung'},{name:'3 Bildschirme',img:'displays',sub:'Multitasking'},{name:'Agenten',img:'agenten',sub:'AI Coding (Claude/Codex)'},{name:'Dev Tools',img:'devtools',sub:'Engineering'},{name:'Cloud Setup',img:'cloud',sub:'Infrastruktur'},{name:'Testgeräte',img:'devices',sub:'Testing'}];
+const play=[{name:'FPV Drohne',img:'drone',sub:'Kreative Projekte'},{name:'Retro Gaming',img:'gaming',sub:'Inspiration'},{name:'Arduino',img:'arduino',sub:'Elektronik'},{name:'Fußball',img:'fussball',sub:'Sports'}];
 ---
 <Base title="Meet Player Two | Profil, Skill Tree & Erfahrung" description="Lerne den Technologiepartner hinter Player Two kennen: 25+ Jahre Software, KI-Erfahrung, CTO- und Gründerpraxis.">
  <div class="p7" id="player-profile">
@@ -53,10 +53,31 @@ const play=[{name:'FPV Drohne',img:'drone',sub:'Kreative Projekte'},{name:'Retro
    <section class="p7-panel p7-career" aria-labelledby="p7-career-heading"><header class="p7-heading"><div><small>◈ · CHARACTER PROGRESSION</small><h2 id="p7-career-heading">BERUFLICHE STATIONEN</h2></div><p>Einige der wichtigsten Level auf meiner Reise.</p></header>
     <ol class="p7-timeline">{career.map((item,i)=><li><time>{item.date}</time><span class="p7-timeline-dot" aria-hidden="true"></span><div><strong>{item.title}</strong><p>{item.text}</p></div></li>)}</ol>
    </section>
-   <section class="p7-panel p7-inventory" aria-labelledby="p7-inventory-heading"><header class="p7-heading"><div><small>◈ · INVENTORY</small><h2 id="p7-inventory-heading">MEIN EQUIPMENT</h2></div><p>Tools, Hardware und Spielzeuge für aktuelle und zukünftige Missionen.</p></header>
-    <div class="p7-inventory-tabs" role="tablist" aria-label="Equipment-Kategorien"><button type="button" role="tab" aria-selected="true" id="p7-inv-work-tab" aria-controls="p7-inv-work" data-p7-inv="work">▣ &nbsp; PROFESSIONAL LOADOUT</button><button type="button" role="tab" aria-selected="false" id="p7-inv-play-tab" aria-controls="p7-inv-play" tabindex="-1" data-p7-inv="play">♧ &nbsp; SIDE QUESTS & GADGETS</button></div>
-    <div id="p7-inv-work" role="tabpanel" aria-labelledby="p7-inv-work-tab" class="p7-item-grid">{work.map(item=><article class="p7-item"><img src={`/profile/${item.img}.${['agents','arduino','football'].includes(item.img)?'svg':'webp'}`} alt="" loading="lazy"/><strong>{item.name}</strong><span>{item.sub}</span></article>)}</div>
-    <div id="p7-inv-play" role="tabpanel" aria-labelledby="p7-inv-play-tab" class="p7-item-grid" hidden>{play.map(item=><article class="p7-item"><img src={`/profile/${item.img}.${['agents','arduino','football'].includes(item.img)?'svg':'webp'}`} alt="" loading="lazy"/><strong>{item.name}</strong><span>{item.sub}</span></article>)}</div>
+   <section class="p7-panel p7-inventory" aria-labelledby="p7-inventory-heading">
+    <header class="p7-heading">
+     <div><small>◈ · INVENTORY</small>
+      <h2 id="p7-inventory-heading">MEIN EQUIPMENT</h2></div>
+     <p>Tools, Hardware und Spielzeuge für aktuelle und zukünftige Missionen.</p></header>
+    <div class="p7-inventory-tabs" role="tablist" aria-label="Equipment-Kategorien">
+     <button type="button" role="tab" aria-selected="true" id="p7-inv-work-tab" aria-controls="p7-inv-work"
+             data-p7-inv="work">▣ &nbsp; PROFESSIONAL LOADOUT
+     </button>
+     <button type="button" role="tab" aria-selected="false" id="p7-inv-play-tab" aria-controls="p7-inv-play"
+             tabindex="-1" data-p7-inv="play">♧ &nbsp; SIDE QUESTS & GADGETS
+     </button>
+    </div>
+    <div id="p7-inv-work" role="tabpanel" aria-labelledby="p7-inv-work-tab" class="p7-item-grid">{work.map(item =>
+        <article class="p7-item"><img
+            src={`/profile/${item.img}.webp`}
+            alt={item.name}
+            loading="lazy"/><strong>{item.name}</strong><span>{item.sub}</span></article>)}</div>
+    <div id="p7-inv-play" role="tabpanel" aria-labelledby="p7-inv-play-tab" class="p7-item-grid"
+         hidden>{play.map(item =>
+        <article class="p7-item"><img
+
+            src={`/profile/${item.img}.webp`}
+            alt={item.name}
+            loading="lazy"/><strong>{item.name}</strong><span>{item.sub}</span></article>)}</div>
    </section>
    <section class="p7-panel p7-world" id="world-map" aria-labelledby="p7-world-heading">
     <header class="p7-heading"><div><small>◈ · WORLD MAP / EXPLORATION LOG</small><h2 id="p7-world-heading">EXPLORED REGIONS</h2></div><p>Stationen meiner beruflichen Reise – von Bayern bis Australien.</p></header>
